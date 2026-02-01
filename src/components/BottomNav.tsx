@@ -22,9 +22,8 @@ export const BottomNav: React.FC = () => {
           <button
             key={item.path}
             onClick={() => router.push(item.path)}
-            className={`flex flex-col items-center gap-1 transition-colors ${
-              isActive ? 'text-primary' : 'text-slate-400 dark:text-[#92b2c9]'
-            }`}
+            className={`flex flex-col items-center gap-1 transition-colors ${isActive ? 'text-primary' : 'text-slate-400 dark:text-[#92b2c9]'
+              }`}
           >
             <span className={`material-symbols-outlined ${isActive ? 'material-symbols-fill' : ''}`}>
               {item.icon}

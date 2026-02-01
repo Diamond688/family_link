@@ -6,10 +6,10 @@ const API_BASE = '/api';
 // ============ 记忆相关 API ============
 
 export async function getMemories(familyId?: string): Promise<Memory[]> {
-  const url = familyId 
-    ? `${API_BASE}/memories?familyId=${familyId}` 
+  const url = familyId
+    ? `${API_BASE}/memories?familyId=${familyId}`
     : `${API_BASE}/memories`;
-  
+
   const res = await fetch(url);
   if (!res.ok) return [];
   return res.json();
@@ -28,12 +28,12 @@ export async function createMemory(memory: MemoryInput): Promise<{ data: Memory 
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(memory),
     });
-    
+
     if (!res.ok) {
       const error = await res.json();
       return { data: null, error: new Error(error.error || '创建失败') };
     }
-    
+
     const data = await res.json();
     return { data, error: null };
   } catch (err) {
@@ -48,12 +48,12 @@ export async function updateMemory(id: string, updates: Partial<MemoryInput>): P
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updates),
     });
-    
+
     if (!res.ok) {
       const error = await res.json();
       return { error: new Error(error.error || '更新失败') };
     }
-    
+
     return { error: null };
   } catch (err) {
     return { error: err as Error };
@@ -65,12 +65,12 @@ export async function deleteMemory(id: string): Promise<{ error: Error | null }>
     const res = await fetch(`${API_BASE}/memories/${id}`, {
       method: 'DELETE',
     });
-    
+
     if (!res.ok) {
       const error = await res.json();
       return { error: new Error(error.error || '删除失败') };
     }
-    
+
     return { error: null };
   } catch (err) {
     return { error: err as Error };
@@ -92,12 +92,12 @@ export async function createFamily(name: string, description?: string): Promise<
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, description }),
     });
-    
+
     if (!res.ok) {
       const error = await res.json();
       return { data: null, error: new Error(error.error || '创建失败') };
     }
-    
+
     const data = await res.json();
     return { data, error: null };
   } catch (err) {
